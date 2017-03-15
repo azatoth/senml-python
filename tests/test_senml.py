@@ -88,3 +88,36 @@ def test_senmlmeas_to_absolute():
     assert float_almost_equal(mabs.value, 123.456)
     assert float_almost_equal(mabs.sum, 4)
     assert float_almost_equal(mabs.time, 1234567897.123)
+
+
+ABS_JSON = [{
+    "s": 3.0,
+    "v": 17.666544,
+    "u": "1/min",
+    "t": 1234567895.123,
+    "n": "urn:dev:mac:0b92569229fc9e68/rpm/fwd"
+}, {
+    "s": 4.0,
+    "v": 123.456,
+    "u": "1/min",
+    "t": 1234567897.123,
+    "n": "urn:dev:mac:0b92569229fc9e68/rpm/rev"
+}, {
+    "vb": True,
+    "u": "1/min",
+    "t": 1234567891.123,
+    "n": "urn:dev:mac:0b92569229fc9e68/rpm/bool"
+}, {
+    "vs": "hej",
+    "u": "1/min",
+    "t": 1234567892.123,
+    "n": "urn:dev:mac:0b92569229fc9e68/rpm/str"
+}]
+
+
+def test_senml_to_absolute():
+    """
+    test SenMLDocument.to_absolute()
+    """
+    doc = senml.SenMLDocument.from_json(JS)
+    assert doc.to_absolute_json() == ABS_JSON

@@ -140,6 +140,7 @@ class SenMLDocument(object):
         }
         if self.base:
             base = self.base
+
             if base.name is not None:
                 first[u'bn'] = unicode(base.name)
             if base.time is not None:
@@ -157,3 +158,9 @@ class SenMLDocument(object):
             ret = []
 
         return ret
+
+    def to_absolute_json(self):
+        u"""
+        Return a JSON dict
+        """
+        return [item.to_absolute(self.base).to_json() for item in self.measurements if item.name is not None]
