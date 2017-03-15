@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf8 -*-
 from __future__ import print_function
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
